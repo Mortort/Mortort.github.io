@@ -30,8 +30,14 @@
       body {
         background-color: #060467;
         overflow: hidden;
-        max-width: 90%;
+        max-width: 100%;
         text-overflow: hidden;
+      }
+      .container,
+      .main-section {
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
       }
       .stars {
         position: absolute;
@@ -41,8 +47,8 @@
         font-size: small;
         white-space: pre-wrap;
         z-index: 0;
-        width: device-width;
-        height: device-height;
+        width: 100%;
+        height: 100%;
       }
       .echos {
         color: white;
