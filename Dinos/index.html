@@ -31,14 +31,23 @@
     />
 
     <style>
-      img {
-        width: 50%;
-        height: 50%;
+      .logo {
+        color: white;
+        width: 2cm;
+        height: auto;
         position: absolute;
+        top: 0.25cm;
         right: 0;
-        top: 0;
+        display: block;
+        z-index: 1;
+        vertical-align: top;
+      }
+      .logoimg {
+        width: 2cm;
+        height: 2cm;
       }
       .bigdino {
+        transform-origin: center;
         transform: rotate(90deg);
         position: absolute;
         top: 30%;
@@ -67,6 +76,7 @@
         top: 0;
         left: 0;
         color: white;
+        background-color: rgba(0, 0, 0, 0);
         font-size: xx-small;
         white-space: pre-wrap;
         text: nowrap;
@@ -86,7 +96,7 @@
         overflow-y: hidden;
         white-space: nowrap;
         position: absolute;
-        bottom: -45%;
+        bottom: -6cm;
         left: 0%;
         width: 100%;
 
@@ -104,7 +114,7 @@
         justify-content: center;
         vertical-align: top;
         padding: 1cm;
-        margin-left: 2.5cm;
+        margin-inline: 3cm;
         height: 4.5cm;
         width: auto;
         font-size: xx-small;
@@ -114,7 +124,18 @@
   </head>
   <body>
     <!---->
-
+    <div class="logo">
+      <a class="logo" href="index.html">
+        <div>
+          <img
+            class="logoimg"
+            src="https://images.creativefabrica.com/products/thumbnails/2023/10/06/iiZq63gct/2WOHit6nbPiJTLMBx3dbNYpw2n1.png"
+            alt="logo"
+          />
+          <p>More Progects<br />Like this</p>
+        </div>
+      </a>
+    </div>
     <a
       class="bigdino"
       href="https://www.asciiart.eu/animals/reptiles/dinosaurs"
@@ -268,9 +289,6 @@ __________                                     | : '. |
                       |/`)
                       'c=,
         </pre>
-      </div>
-      <div class="DinoArt">
-        <pre></pre>
       </div>
     </div>
     <!---->
