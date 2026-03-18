@@ -534,7 +534,7 @@
         font-family: F1-Bold;
         font-size: 11px;
         text-transform: uppercase;
-        padding: 10px;
+        padding: 20px;
         border-radius: 3px;
         cursor: pointer;
         background: var(--merc-teal);
@@ -542,6 +542,8 @@
         border: none;
         letter-spacing: 1px;
         margin-top: auto;
+        position: sticky;
+        bottom: 2.3rem;
       }
       .sb-apply:hover {
         background: #00c4be;
@@ -932,8 +934,14 @@
         class="f1-logo"
       />
       <h1 class="site-title">Dashboard</h1>
-      <div class="header-actions" style="position: absolute; right: 40px;">
-        <button class="btn-reorder" style="font-family: F1-regular" onclick="openSidebar()">⠿ WIDGETS</button>
+      <div class="header-actions" style="position: absolute; right: 40px">
+        <button
+          class="btn-reorder"
+          style="font-family: F1-regular"
+          onclick="openSidebar()"
+        >
+          ⠿ WIDGETS
+        </button>
       </div>
     </div>
 
