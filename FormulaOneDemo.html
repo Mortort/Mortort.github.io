@@ -6,11 +6,38 @@
     <title>F1 Dashboard</title>
     <meta property="og:title" content="F1 Dashboard" />
     <meta property="og:type" content="article" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="PNG to Favicon Converter/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="PNG to Favicon Converter/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="PNG to Favicon Converter/favicon-16x16.png"
+    />
+    <link rel="manifest" href="PNG to Favicon Converter/site.webmanifest" />
 
     <style>
-      @font-face { font-family: "F1-Bold";    src: url("Fonts/Formula1-Bold.otf"); }
-      @font-face { font-family: "F1-Regular"; src: url("Fonts/Formula1-Regular.otf"); }
-      @font-face { font-family: "F1-Wide";    src: url("Fonts/Formula1-Wide.otf"); }
+      @font-face {
+        font-family: "F1-Bold";
+        src: url("Fonts/Formula1-Bold.otf");
+      }
+      @font-face {
+        font-family: "F1-Regular";
+        src: url("Fonts/Formula1-Regular.otf");
+      }
+      @font-face {
+        font-family: "F1-Wide";
+        src: url("Fonts/Formula1-Wide.otf");
+      }
 
       body {
         margin: 0;
@@ -21,11 +48,11 @@
       }
 
       :root {
-        --merc-teal:     #00a19b;
-        --merc-red:      #e10600;
-        --fia-yellow:    #ffd700;
+        --merc-teal: #00a19b;
+        --merc-red: #e10600;
+        --fia-yellow: #ffd700;
         --battery-green: #00ff41;
-        --panel-grey:    #1c1c1c;
+        --panel-grey: #1c1c1c;
       }
 
       /* ── Header ────────────────────────────────────────────── */
@@ -37,8 +64,20 @@
         background: #121212;
         border-bottom: 2px solid var(--merc-teal);
       }
-      .f1-logo    { height: 30px; width: auto; display: block; object-fit: contain; }
-      .site-title { font-family: "F1-Wide"; font-size: 20px; margin: 0; text-transform: uppercase; color: white; letter-spacing: 1px; }
+      .f1-logo {
+        height: 30px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .site-title {
+        font-family: "F1-Wide";
+        font-size: 20px;
+        margin: 0;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 1px;
+      }
 
       /* ── Dashboard grid ─────────────────────────────────────── */
       .dashboard {
@@ -57,7 +96,9 @@
         border: 1px solid #252525;
         min-width: 0;
       }
-      .wide { grid-column: span 2; }
+      .wide {
+        grid-column: span 2;
+      }
 
       /* ── Performance HUD ─────────────────────────────────────── */
       .performance-hud {
@@ -73,86 +114,443 @@
         width: 100%;
         box-sizing: border-box;
       }
-      .driver-id-block { display: flex; align-items: center; gap: 15px; }
+      .driver-id-block {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
       .driver-badge {
         background: var(--merc-teal);
         color: black;
-        width: 100px; height: 55px;
+        width: 100px;
+        height: 55px;
         flex-shrink: 0;
-        display: flex; align-items: center; justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-family: "F1-Wide", sans-serif;
         font-size: 32px;
         border-radius: 3px;
       }
-      .driver-info h1 { font-family: "F1-Bold", sans-serif; margin: 0; font-size: 24px; text-transform: uppercase; }
+      .driver-info h1 {
+        font-family: "F1-Bold", sans-serif;
+        margin: 0;
+        font-size: 24px;
+        text-transform: uppercase;
+      }
 
       /* ── Speed ───────────────────────────────────────────────── */
-      .speed-display  { text-align: center; min-width: 225px; }
-      .speed-value    { font-size: 52px; font-family: "F1-Wide"; color: white; line-height: 1; }
-      .speed-unit     { font-size: 12px; color: #888; font-family: "F1-Bold"; }
+      .speed-display {
+        text-align: center;
+        min-width: 225px;
+      }
+      .speed-value {
+        font-size: 52px;
+        font-family: "F1-Wide";
+        color: white;
+        line-height: 1;
+      }
+      .speed-unit {
+        font-size: 12px;
+        color: #888;
+        font-family: "F1-Bold";
+      }
 
       /* ── Aero ────────────────────────────────────────────────── */
-      .aero-status    { display: flex; flex-direction: column; gap: 8px; }
-      .aero-indicator { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-      .aero-label     { font-size: 10px; color: #aaa; font-family: "F1-Bold"; }
-      .aero-box       { padding: 4px 10px; background: #000; border-radius: 2px; font-size: 11px; font-family: "F1-Bold"; text-align: center; min-width: 80px; }
-      .aero-active    { color: #00ff41; border: 1px solid #00ff41; box-shadow: 0 0 10px rgba(0,255,65,0.2); }
-      .aero-inactive  { color: #444; border: 1px solid #222; }
+      .aero-status {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .aero-indicator {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .aero-label {
+        font-size: 10px;
+        color: #aaa;
+        font-family: "F1-Bold";
+      }
+      .aero-box {
+        padding: 4px 10px;
+        background: #000;
+        border-radius: 2px;
+        font-size: 11px;
+        font-family: "F1-Bold";
+        text-align: center;
+        min-width: 80px;
+      }
+      .aero-active {
+        color: #00ff41;
+        border: 1px solid #00ff41;
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+      }
+      .aero-inactive {
+        color: #444;
+        border: 1px solid #222;
+      }
 
       /* ── Battery / ERS ───────────────────────────────────────── */
-      .ers-section    { flex-grow: 1; width: 100%; max-width: 400px; }
-      .battery-header { display: flex; justify-content: space-between; font-size: 10px; font-family: "F1-Bold"; color: #aaa; margin-bottom: 6px; }
-      .battery-track  { height: 16px; background: #000; border-radius: 3px; overflow: hidden; position: relative; border: 1px solid #444; width: 100%; }
-      .battery-fill   { height: 100%; background: var(--battery-green); transition: width .3s ease, background-color .3s ease; box-shadow: 0 0 15px rgba(0,255,65,0.3); }
-      .battery-fill.depleting { background: #ffaa00; box-shadow: 0 0 15px rgba(255,170,0,0.4); }
-      .flow-indicator { height: 4px; margin-top: 4px; background: #111; border-radius: 2px; overflow: hidden; position: relative; width: 100%; }
-      .flow-bar       { position: absolute; width: 100%; height: 100%; background-size: 20px 100%; display: none; }
-      .flow-deploy    { display: block; background-image: linear-gradient(90deg, transparent 50%, var(--merc-red) 50%); animation: flow-right .5s linear infinite; }
-      .flow-harvest   { display: block; background-image: linear-gradient(90deg, transparent 50%, var(--battery-green) 50%); animation: flow-left .5s linear infinite; }
-      @keyframes flow-right { from { transform: translateX(-20px); } to { transform: translateX(0); } }
-      @keyframes flow-left  { from { transform: translateX(0); } to { transform: translateX(-20px); } }
+      .ers-section {
+        flex-grow: 1;
+        width: 100%;
+        max-width: 400px;
+      }
+      .battery-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        font-family: "F1-Bold";
+        color: #aaa;
+        margin-bottom: 6px;
+      }
+      .battery-track {
+        height: 16px;
+        background: #000;
+        border-radius: 3px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #444;
+        width: 100%;
+      }
+      .battery-fill {
+        height: 100%;
+        background: var(--battery-green);
+        transition:
+          width 0.3s ease,
+          background-color 0.3s ease;
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+      }
+      .battery-fill.depleting {
+        background: #ffaa00;
+        box-shadow: 0 0 15px rgba(255, 170, 0, 0.4);
+      }
+      .flow-indicator {
+        height: 4px;
+        margin-top: 4px;
+        background: #111;
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+      }
+      .flow-bar {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: 20px 100%;
+        display: none;
+      }
+      .flow-deploy {
+        display: block;
+        background-image: linear-gradient(
+          90deg,
+          transparent 50%,
+          var(--merc-red) 50%
+        );
+        animation: flow-right 0.5s linear infinite;
+      }
+      .flow-harvest {
+        display: block;
+        background-image: linear-gradient(
+          90deg,
+          transparent 50%,
+          var(--battery-green) 50%
+        );
+        animation: flow-left 0.5s linear infinite;
+      }
+      @keyframes flow-right {
+        from {
+          transform: translateX(-20px);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+      @keyframes flow-left {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-20px);
+        }
+      }
 
       /* ── FIA ─────────────────────────────────────────────────── */
-      .fia-widget  { border-left: 4px solid var(--fia-yellow); }
-      .fia-title   { color: var(--fia-yellow); font-family: "F1-Bold"; font-size: 12px; display: flex; align-items: center; gap: 6px; margin-bottom: 12px; text-transform: uppercase; }
+      .fia-widget {
+        border-left: 4px solid var(--fia-yellow);
+      }
+      .fia-title {
+        color: var(--fia-yellow);
+        font-family: "F1-Bold";
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
 
       /* ── Stats / Gear ────────────────────────────────────────── */
-      .stats-grid  { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-      .stat-box    { background: #1a1a1a; padding: 10px; border-bottom: 2px solid #333; text-align: center; }
-      .stat-label  { color: #888; font-size: 10px; font-family: "F1-Bold"; text-transform: uppercase; }
-      .stat-value  { font-family: "F1-Bold"; font-size: 16px; margin-top: 4px; }
-      .gear-ui     { background: #1a1a1a; padding: 15px; border-radius: 4px; text-align: center; margin-top: 10px; }
-      .gears-list  { display: flex; justify-content: center; gap: 4px; margin-bottom: 10px; flex-wrap: wrap; }
-      .g-box       { width: 28px; height: 32px; display: flex; align-items: center; justify-content: center; background: #252525; color: #444; font-family: "F1-Bold"; border-radius: 2px; }
-      .g-box.active { background: var(--merc-teal); color: black; transform: scale(1.1); }
-      .rpm-container { width: 100%; height: 6px; background: #333; border-radius: 3px; overflow: hidden; }
-      .rpm-bar     { height: 100%; background: linear-gradient(90deg, var(--merc-teal), #fff, var(--merc-red)); transition: width .5s ease; }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .stat-box {
+        background: #1a1a1a;
+        padding: 10px;
+        border-bottom: 2px solid #333;
+        text-align: center;
+      }
+      .stat-label {
+        color: #888;
+        font-size: 10px;
+        font-family: "F1-Bold";
+        text-transform: uppercase;
+      }
+      .stat-value {
+        font-family: "F1-Bold";
+        font-size: 16px;
+        margin-top: 4px;
+      }
+      .gear-ui {
+        background: #1a1a1a;
+        padding: 15px;
+        border-radius: 4px;
+        text-align: center;
+        margin-top: 10px;
+      }
+      .gears-list {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+      .g-box {
+        width: 28px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #252525;
+        color: #444;
+        font-family: "F1-Bold";
+        border-radius: 2px;
+      }
+      .g-box.active {
+        background: var(--merc-teal);
+        color: black;
+        transform: scale(1.1);
+      }
+      .rpm-container {
+        width: 100%;
+        height: 6px;
+        background: #333;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .rpm-bar {
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--merc-teal),
+          #fff,
+          var(--merc-red)
+        );
+        transition: width 0.5s ease;
+      }
 
       /* ── Track map ───────────────────────────────────────────── */
-      .track-wrap  { background: #0a0a0a; border-radius: 8px; padding: 10px; position: relative; }
-      .track-svg   { width: 100%; height: auto; display: block; max-width: 100%; }
-      .chart-container { height: 250px; width: 100%; position: relative; }
+      .track-wrap {
+        background: #0a0a0a;
+        border-radius: 8px;
+        padding: 10px;
+        position: relative;
+      }
+      .track-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        max-width: 100%;
+      }
+      .chart-container {
+        height: 250px;
+        width: 100%;
+        position: relative;
+      }
 
       /* ── Section label ───────────────────────────────────────── */
-      .widget-label { font-family: F1-Bold; color: #555; font-size: 11px; margin-bottom: 10px; }
+      .widget-label {
+        font-family: F1-Bold;
+        color: #555;
+        font-size: 11px;
+        margin-bottom: 10px;
+      }
 
       /* ── Mobile ──────────────────────────────────────────────── */
       @media (max-width: 850px) {
-        .dashboard    { grid-template-columns: 1fr; }
-        .wide         { grid-column: span 1; }
-        .performance-hud { flex-direction: column; align-items: stretch; gap: 20px; }
-        .speed-display { width: 100%; margin-bottom: 10px; }
-        .aero-status  { flex-direction: row; justify-content: space-around; gap: 15px; padding: 15px 0; border-top: 1px solid #333; border-bottom: 1px solid #333; width: 100%; }
-        .aero-indicator { flex-direction: column; gap: 5px; width: 45%; }
-        .aero-box     { width: 100%; box-sizing: border-box; }
-        .ers-section  { width: 100%; margin-top: 5px; }
+        .dashboard {
+          grid-template-columns: 1fr;
+        }
+        .wide {
+          grid-column: span 1;
+        }
+        .performance-hud {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 20px;
+        }
+        .speed-display {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+        .aero-status {
+          flex-direction: row;
+          justify-content: space-around;
+          gap: 15px;
+          padding: 15px 0;
+          border-top: 1px solid #333;
+          border-bottom: 1px solid #333;
+          width: 100%;
+        }
+        .aero-indicator {
+          flex-direction: column;
+          gap: 5px;
+          width: 45%;
+        }
+        .aero-box {
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .ers-section {
+          width: 100%;
+          margin-top: 5px;
+        }
+      }
+
+      /* ── Reorder sidebar ──────────────────────────────────── */
+      .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 100;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .sidebar-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .reorder-sidebar {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 300px;
+        height: 100vh;
+        background: #121212;
+        border-left: 2px solid var(--merc-teal);
+        z-index: 101;
+        padding: 20px;
+        transition: right 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        overflow-y: auto;
+      }
+      .reorder-sidebar.open {
+        right: 0;
+      }
+
+      .sidebar-title {
+        font-family: F1-Wide;
+        font-size: 13px;
+        text-transform: uppercase;
+        color: var(--merc-teal);
+        letter-spacing: 1px;
+        border-bottom: 1px solid #252525;
+        padding-bottom: 12px;
+      }
+
+      .sb-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #1a1a1a;
+        border: 1px solid #252525;
+        border-radius: 3px;
+        padding: 10px 12px;
+        cursor: grab;
+        user-select: none;
+        transition:
+          background 0.1s,
+          border-color 0.1s;
+      }
+      .sb-row:active {
+        cursor: grabbing;
+      }
+      .sb-row.drag-over {
+        border-color: var(--merc-teal);
+        background: #1a2a2a;
+      }
+      .sb-row.dragging {
+        opacity: 0.4;
+      }
+
+      .sb-handle {
+        color: #444;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .sb-label {
+        font-family: F1-Bold;
+        font-size: 11px;
+        flex: 1;
+        text-transform: uppercase;
+      }
+      .sb-wide-toggle {
+        font-family: F1-Bold;
+        font-size: 9px;
+        padding: 3px 7px;
+        border-radius: 2px;
+        border: 1px solid #333;
+        background: #111;
+        color: #555;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: all 0.15s;
+      }
+      .sb-wide-toggle.active {
+        border-color: var(--merc-teal);
+        color: var(--merc-teal);
+      }
+
+      .sb-apply {
+        font-family: F1-Bold;
+        font-size: 11px;
+        text-transform: uppercase;
+        padding: 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        background: var(--merc-teal);
+        color: black;
+        border: none;
+        letter-spacing: 1px;
+        margin-top: auto;
+      }
+      .sb-apply:hover {
+        background: #00c4be;
       }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-
     <!-- ═══════════════════════════════════════════════════════
          SHARED STATE
          All widget render functions read from this object.
@@ -163,44 +561,44 @@
       const STATE = {
         // Driver / team
         driverNumber: 12,
-        driverName:   'K. Antonelli',
-        team:         'MERCEDES-AMG PETRONAS',
+        driverName: "K. Antonelli",
+        team: "MERCEDES-AMG PETRONAS",
 
         // Live telemetry
-        speed:  312,   // km/h
-        rpm:    11450,
+        speed: 312, // km/h
+        rpm: 11450,
         maxRpm: 12500,
-        gear:   7,     // 0 = N, 1-8 = gears
+        gear: 7, // 0 = N, 1-8 = gears
 
         // ERS / battery
-        soc:         82,    // % state of charge
-        ersMode:     'HARVESTING', // 'HARVESTING' | 'DEPLOYING'
-        ersKw:       40,    // positive = harvesting, negative = deploying
+        soc: 82, // % state of charge
+        ersMode: "HARVESTING", // 'HARVESTING' | 'DEPLOYING'
+        ersKw: 40, // positive = harvesting, negative = deploying
 
         // Aero
-        drsActive:   false,
-        wingStatus:  'CLOSED', // 'OPEN' | 'CLOSED'
+        drsActive: false,
+        wingStatus: "CLOSED", // 'OPEN' | 'CLOSED'
 
         // Race info
-        tyre:        'SOFT',
-        tyreLaps:    4,
-        currentLap:  34,
-        totalLaps:   44,
-        interval:    '+1.2s',
+        tyre: "SOFT",
+        tyreLaps: 4,
+        currentLap: 34,
+        totalLaps: 44,
+        interval: "+1.2s",
 
         // FIA messages
         fiaMessages: [
-          { type: 'warning', text: 'NOTICE: TRACK LIMITS WARNING TURN 4' },
-          { type: 'info',    text: '• WEATHER: NO RAIN EXPECTED' },
-          { type: 'info',    text: '• DRS ENABLED: LAP 32' },
-          { type: 'info',    text: '• LAPPED CARS MAY NOW OVERTAKE' },
+          { type: "warning", text: "NOTICE: TRACK LIMITS WARNING TURN 4" },
+          { type: "info", text: "• WEATHER: NO RAIN EXPECTED" },
+          { type: "info", text: "• DRS ENABLED: LAP 32" },
+          { type: "info", text: "• LAPPED CARS MAY NOW OVERTAKE" },
         ],
 
         // Telemetry chart data points
         telemetryData: [
-          220,245,280,310,325,332,330,240,110,85,
-          95,140,210,260,290,315,330,325,310,240,
-          120,95,140,210,260,290,315,330,325,310,
+          220, 245, 280, 310, 325, 332, 330, 240, 110, 85, 95, 140, 210, 260,
+          290, 315, 330, 325, 310, 240, 120, 95, 140, 210, 260, 290, 315, 330,
+          325, 310,
         ],
       };
     </script>
@@ -212,17 +610,21 @@
     ════════════════════════════════════════════════════════════ -->
     <script>
       const REGISTRY = {
-
         // ── Performance HUD (driver identity + speed + aero + ERS) ──
-        'performance-hud': () => {
-          const isDeploying  = STATE.ersMode === 'DEPLOYING';
-          const drsClass     = STATE.drsActive ? 'aero-active' : 'aero-inactive';
-          const drsLabel     = STATE.drsActive ? 'ACTIVE'      : 'AVAILABLE';
-          const wingClass    = STATE.wingStatus === 'OPEN' ? 'aero-active' : 'aero-inactive';
-          const battClass    = isDeploying ? 'battery-fill depleting' : 'battery-fill';
-          const flowClass    = isDeploying ? 'flow-bar flow-deploy'   : 'flow-bar flow-harvest';
-          const modeColor    = isDeploying ? '#ffaa00' : '#00ff41';
-          const modeLabel    = isDeploying
+        "performance-hud": () => {
+          const isDeploying = STATE.ersMode === "DEPLOYING";
+          const drsClass = STATE.drsActive ? "aero-active" : "aero-inactive";
+          const drsLabel = STATE.drsActive ? "ACTIVE" : "AVAILABLE";
+          const wingClass =
+            STATE.wingStatus === "OPEN" ? "aero-active" : "aero-inactive";
+          const battClass = isDeploying
+            ? "battery-fill depleting"
+            : "battery-fill";
+          const flowClass = isDeploying
+            ? "flow-bar flow-deploy"
+            : "flow-bar flow-harvest";
+          const modeColor = isDeploying ? "#ffaa00" : "#00ff41";
+          const modeLabel = isDeploying
             ? `ENERGY MANAGEMENT: DEPLOYING (${STATE.ersKw}kW)`
             : `ENERGY MANAGEMENT: HARVESTING (+${STATE.ersKw}kW)`;
 
@@ -274,16 +676,24 @@
         },
 
         // ── Tyre / Lap / Interval stats + Gear display ──
-        'gear-rpm': () => {
-          const gearLabels  = ['N','1','2','3','4','5','6','7','8'];
-          const rpmPct      = Math.round((STATE.rpm / STATE.maxRpm) * 100);
-          const gearsHtml   = gearLabels.map((g, i) => {
-            // gear index: 0=N, 1-8 match STATE.gear
-            const isActive = (i === 0 && STATE.gear === 0) || (i === STATE.gear);
-            return `<div class="g-box${isActive ? ' active' : ''}">${g}</div>`;
-          }).join('');
+        "gear-rpm": () => {
+          const gearLabels = ["N", "1", "2", "3", "4", "5", "6", "7", "8"];
+          const rpmPct = Math.round((STATE.rpm / STATE.maxRpm) * 100);
+          const gearsHtml = gearLabels
+            .map((g, i) => {
+              // gear index: 0=N, 1-8 match STATE.gear
+              const isActive =
+                (i === 0 && STATE.gear === 0) || i === STATE.gear;
+              return `<div class="g-box${isActive ? " active" : ""}">${g}</div>`;
+            })
+            .join("");
 
-          const tyreColor = STATE.tyre === 'SOFT' ? '#f1c40f' : STATE.tyre === 'MEDIUM' ? '#f39c12' : '#bdc3c7';
+          const tyreColor =
+            STATE.tyre === "SOFT"
+              ? "#f1c40f"
+              : STATE.tyre === "MEDIUM"
+                ? "#f39c12"
+                : "#bdc3c7";
 
           return `
             <div class="stats-grid">
@@ -314,11 +724,11 @@
         },
 
         // ── FIA Race Control ──
-        'fia-control': () => {
+        "fia-control": () => {
           const [first, ...rest] = STATE.fiaMessages;
-          const restHtml = rest.map(m =>
-            `<div style="opacity:0.8">${m.text}</div>`
-          ).join('');
+          const restHtml = rest
+            .map((m) => `<div style="opacity:0.8">${m.text}</div>`)
+            .join("");
 
           return `
             <div class="fia-title">
@@ -336,14 +746,14 @@
         },
 
         // ── Live speed telemetry chart ──
-        'telemetry-chart': () => `
+        "telemetry-chart": () => `
           <div class="widget-label">LIVE SPEED STREAMING (KM/H)</div>
           <div class="chart-container">
             <canvas id="telemetryChart"></canvas>
           </div>`,
 
         // ── GPS track map (Monaco) ──
-        'gps-map': () => `
+        "gps-map": () => `
           <div class="widget-label">GPS TRACKING - MONACO</div>
           <div class="track-wrap">
             <svg class="track-svg" viewBox="-650 -350 1300 650">
@@ -355,7 +765,6 @@
               <circle id="opp2" r="7"  fill="#0600EF"          stroke="white" stroke-width="1"/>
             </svg>
           </div>`,
-
       }; // end REGISTRY
     </script>
 
@@ -371,11 +780,11 @@
     ════════════════════════════════════════════════════════════ -->
     <script>
       const WIDGETS = [
-        { type: 'performance-hud',  wide: true  },
-        { type: 'gear-rpm',         wide: false },
-        { type: 'fia-control',      wide: false },
-        { type: 'telemetry-chart',  wide: true  },
-        { type: 'gps-map',          wide: true  },
+        { type: "performance-hud", wide: true },
+        { type: "gear-rpm", wide: false },
+        { type: "fia-control", wide: false },
+        { type: "telemetry-chart", wide: true },
+        { type: "gps-map", wide: true },
       ];
     </script>
 
@@ -386,95 +795,127 @@
       // Widgets that need JS initialisation after their HTML is injected
       // register a function here keyed by widget type.
       const POST_RENDER = {
-
-        'telemetry-chart': () => {
-          const ctx = document.getElementById('telemetryChart').getContext('2d');
+        "telemetry-chart": () => {
+          const ctx = document
+            .getElementById("telemetryChart")
+            .getContext("2d");
           new Chart(ctx, {
-            type: 'line',
+            type: "line",
             data: {
-              labels:   Array.from({ length: STATE.telemetryData.length }, (_, i) => i * 10),
-              datasets: [{
-                data:        STATE.telemetryData,
-                borderColor: '#00A19B',
-                borderWidth: 3,
-                tension:     0.3,
-                pointRadius: 0,
-              }],
+              labels: Array.from(
+                { length: STATE.telemetryData.length },
+                (_, i) => i * 10,
+              ),
+              datasets: [
+                {
+                  data: STATE.telemetryData,
+                  borderColor: "#00A19B",
+                  borderWidth: 3,
+                  tension: 0.3,
+                  pointRadius: 0,
+                },
+              ],
             },
             options: {
-              responsive:          true,
+              responsive: true,
               maintainAspectRatio: false,
               plugins: { legend: { display: false } },
               scales: {
                 y: {
-                  grid:  { color: '#252525' },
-                  ticks: { color: '#666', padding: 10, font: { family: 'F1-Bold' } },
+                  grid: { color: "#252525" },
+                  ticks: {
+                    color: "#666",
+                    padding: 10,
+                    font: { family: "F1-Bold" },
+                  },
                 },
                 x: { display: false },
               },
               layout: { padding: { bottom: 40 } },
             },
-            plugins: [{
-              afterDraw: (chart) => {
-                const { ctx, chartArea: { bottom, left, width } } = chart;
-                ctx.save();
-                ctx.font = '10px F1-Bold';
-                ctx.fillStyle = '#00FF00';
-                ctx.fillText('DRS ZONE 1', left + width * 0.1, bottom + 15);
-                ctx.fillRect(left + width * 0.1, bottom + 20, width * 0.25, 5);
-                ctx.fillStyle = '#E10600';
-                ctx.fillText('HEAVY BRAKING', left + width * 0.7, bottom + 15);
-                ctx.fillRect(left + width * 0.7, bottom + 20, width * 0.15, 5);
-                ctx.restore();
+            plugins: [
+              {
+                afterDraw: (chart) => {
+                  const {
+                    ctx,
+                    chartArea: { bottom, left, width },
+                  } = chart;
+                  ctx.save();
+                  ctx.font = "10px F1-Bold";
+                  ctx.fillStyle = "#00FF00";
+                  ctx.fillText("DRS ZONE 1", left + width * 0.1, bottom + 15);
+                  ctx.fillRect(
+                    left + width * 0.1,
+                    bottom + 20,
+                    width * 0.25,
+                    5,
+                  );
+                  ctx.fillStyle = "#E10600";
+                  ctx.fillText(
+                    "HEAVY BRAKING",
+                    left + width * 0.7,
+                    bottom + 15,
+                  );
+                  ctx.fillRect(
+                    left + width * 0.7,
+                    bottom + 20,
+                    width * 0.15,
+                    5,
+                  );
+                  ctx.restore();
+                },
               },
-            }],
+            ],
           });
         },
 
-        'gps-map': () => {
-          const path = document.getElementById('trackPath');
-          const len  = path.getTotalLength();
+        "gps-map": () => {
+          const path = document.getElementById("trackPath");
+          const len = path.getTotalLength();
           const cars = [
-            { id: 'pCar', off: 0    },
-            { id: 'opp1', off: 0.05 },
-            { id: 'opp2', off: 0.15 },
+            { id: "pCar", off: 0 },
+            { id: "opp1", off: 0.05 },
+            { id: "opp2", off: 0.15 },
           ];
           function animate() {
             const t = Date.now() / 5000;
             cars.forEach(({ id, off }) => {
-              const p  = path.getPointAtLength(((t + off) % 1) * len);
+              const p = path.getPointAtLength(((t + off) % 1) * len);
               const el = document.getElementById(id);
-              el.setAttribute('cx', p.x);
-              el.setAttribute('cy', p.y);
+              el.setAttribute("cx", p.x);
+              el.setAttribute("cy", p.y);
             });
             requestAnimationFrame(animate);
           }
           animate();
         },
-
       }; // end POST_RENDER
 
       // ── Core render function ──────────────────────────────────
       function renderDashboard() {
-        const grid = document.querySelector('.dashboard');
-        grid.innerHTML = '';
+        const grid = document.querySelector(".dashboard");
+        grid.innerHTML = "";
 
-        WIDGETS.forEach(config => {
+        WIDGETS.forEach((config) => {
           const renderFn = REGISTRY[config.type];
           if (!renderFn) {
-            console.warn(`[F1 Dashboard] Unknown widget type: "${config.type}"`);
+            console.warn(
+              `[F1 Dashboard] Unknown widget type: "${config.type}"`,
+            );
           }
 
-          const div = document.createElement('div');
-          div.className  = 'widget' + (config.wide ? ' wide' : '');
+          const div = document.createElement("div");
+          div.className = "widget" + (config.wide ? " wide" : "");
           // Add special class for fia widget styling
-          if (config.type === 'fia-control') div.classList.add('fia-widget');
-          div.innerHTML  = renderFn ? renderFn(config) : `<p style="color:#e10600">Unknown widget: ${config.type}</p>`;
+          if (config.type === "fia-control") div.classList.add("fia-widget");
+          div.innerHTML = renderFn
+            ? renderFn(config)
+            : `<p style="color:#e10600">Unknown widget: ${config.type}</p>`;
           grid.appendChild(div);
         });
 
         // Run post-render hooks (Chart.js init, animations, etc.)
-        WIDGETS.forEach(config => {
+        WIDGETS.forEach((config) => {
           const hook = POST_RENDER[config.type];
           if (hook) hook(config);
         });
@@ -485,12 +926,118 @@
 
     <!-- Header -->
     <div class="site-header">
-      <img src="https://logos-world.net/wp-content/uploads/2023/12/F1-Logo.png" alt="F1 Logo" class="f1-logo"/>
+      <img
+        src="https://logos-world.net/wp-content/uploads/2023/12/F1-Logo.png"
+        alt="F1 Logo"
+        class="f1-logo"
+      />
       <h1 class="site-title">Dashboard</h1>
+      <div class="header-actions" style="position: absolute; right: 40px;">
+        <button class="btn-reorder" style="font-family: F1-regular" onclick="openSidebar()">⠿ WIDGETS</button>
+      </div>
     </div>
 
     <!-- Dashboard grid (populated by renderDashboard) -->
     <div class="dashboard"></div>
 
+    <!-- Reorder sidebar -->
+    <div
+      class="sidebar-overlay"
+      id="sidebarOverlay"
+      onclick="closeSidebar()"
+    ></div>
+    <div class="reorder-sidebar" id="reorderSidebar">
+      <div class="sidebar-title">⠿ Widget Order</div>
+      <div id="sbList"></div>
+      <button class="sb-apply" onclick="applySidebarOrder()">
+        APPLY & REFRESH
+      </button>
+    </div>
+    <script>
+      // ── Sidebar labels (friendly names for each widget type) ──
+      const WIDGET_LABELS = {
+        "performance-hud": "Performance HUD",
+        "gear-rpm": "Gear & RPM",
+        "fia-control": "FIA Race Control",
+        "telemetry-chart": "Speed Telemetry",
+        "gps-map": "GPS Map",
+        "tyre-temps": "Tyre Temperatures",
+        "throttle-brake": "Throttle & Brake",
+        gaps: "Gaps",
+        leaderboard: "Leaderboard",
+      };
+
+      let sidebarOrder = []; // working copy while sidebar is open
+      let dragSrc = null;
+
+      function openSidebar() {
+        sidebarOrder = WIDGETS.map((w) => ({ ...w })); // clone
+        renderSidebarList();
+        document.getElementById("reorderSidebar").classList.add("open");
+        document.getElementById("sidebarOverlay").classList.add("open");
+      }
+
+      function closeSidebar() {
+        document.getElementById("reorderSidebar").classList.remove("open");
+        document.getElementById("sidebarOverlay").classList.remove("open");
+      }
+
+      function renderSidebarList() {
+        const list = document.getElementById("sbList");
+        list.innerHTML = "";
+        sidebarOrder.forEach((w, i) => {
+          const row = document.createElement("div");
+          row.className = "sb-row";
+          row.draggable = true;
+          row.dataset.idx = i;
+          row.innerHTML = `
+      <span class="sb-handle">⠿</span>
+      <span class="sb-label">${WIDGET_LABELS[w.type] ?? w.type}</span>
+      <button class="sb-wide-toggle ${w.wide ? "active" : ""}"
+        onclick="toggleWide(${i})">${w.wide ? "WIDE" : "HALF"}</button>`;
+
+          row.addEventListener("dragstart", (e) => {
+            dragSrc = i;
+            setTimeout(() => row.classList.add("dragging"), 0);
+          });
+          row.addEventListener("dragend", () => {
+            row.classList.remove("dragging");
+            document
+              .querySelectorAll(".sb-row")
+              .forEach((r) => r.classList.remove("drag-over"));
+          });
+          row.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            document
+              .querySelectorAll(".sb-row")
+              .forEach((r) => r.classList.remove("drag-over"));
+            row.classList.add("drag-over");
+          });
+          row.addEventListener("drop", (e) => {
+            e.preventDefault();
+            if (dragSrc === null || dragSrc === i) return;
+            const moved = sidebarOrder.splice(dragSrc, 1)[0];
+            sidebarOrder.splice(i, 0, moved);
+            dragSrc = null;
+            renderSidebarList();
+          });
+
+          list.appendChild(row);
+        });
+      }
+
+      function toggleWide(i) {
+        sidebarOrder[i].wide = !sidebarOrder[i].wide;
+        renderSidebarList();
+      }
+
+      function applySidebarOrder() {
+        // Write back to the live WIDGETS array
+        WIDGETS.length = 0;
+        sidebarOrder.forEach((w) => WIDGETS.push(w));
+        renderDashboard();
+        closeSidebar();
+      }
+    </script>
   </body>
 </html>
