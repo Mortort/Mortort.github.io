@@ -1,86 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Ayuda para México</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4cdcc;
-            padding: 50px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f4cdcc;
+        padding: 50px;
+      }
 
-        /* The Button Style */
-        .donate-button {
-            background-color: #d16d6a; /* Green for help/hope */
-            color: white;
-            border: none;
-            padding: 20px 60px;
-            font-size: 30px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s, background-color 0.2s;
-            margin-bottom: 50px;
-        }
+      /* The Button Style */
+      .donate-button {
+        background-color: #d16d6a; /* Green for help/hope */
+        color: white;
+        border: none;
+        padding: 20px 60px;
+        font-size: 30px;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition:
+          transform 0.2s,
+          background-color 0.2s;
+        margin-bottom: 50px;
+      }
 
-        .donate-button:hover {
-            background-color: #218838;
-            transform: scale(1.05);
-        }
+      .donate-button:hover {
+        background-color: #c75b57;
+        transform: scale(1.05);
+      }
 
-        .donate-button:active {
-            transform: scale(0.95);
-        }
+      .donate-button:active {
+        transform: scale(0.95);
+      }
 
-        /* The Image Gallery */
-        .image-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px; /* Space between photos */
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
+      /* The Image Gallery */
+      .image-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Space between photos */
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
 
-        .image-container img {
-            width: 300px;
-            height: 200px;
-            object-fit: cover; /* Keeps images same size without stretching */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border: 3px solid white;
-        }
+      .image-container img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover; /* Keeps images same size without stretching */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 3px solid white;
+      }
 
-        h1 { color: #333; }
+      h1 {
+        color: #333;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <h1>Las Inundaciones De México</h1>
     <p>Dona, Por Favor</p>
 
     <button class="donate-button" onclick="launchConfetti()">DONAR</button>
 
     <div class="image-container">
-        <img src="https://i.natgeofe.com/k/7d906c71-1105-4048-b32b-a55b1b04e3bc/OG_Floods_KIDS_0922.jpg" alt="Inundación 1">
-        <img src="https://www.worldweatherattribution.org/wp-content/uploads/mozambique-1.jpg" alt="Inundación 2">
-        <img src="https://dialogue.earth/content/uploads/2024/05/20240523_resident-boat-Porto-Alegre-city-Center-floods-Brazil_Mai-Yandara_MidiaNINJA.jpeg" alt="Inundación 3">
+      <img
+        src="https://i.natgeofe.com/k/7d906c71-1105-4048-b32b-a55b1b04e3bc/OG_Floods_KIDS_0922.jpg"
+        alt="Inundación 1"
+      />
+      <img
+        src="https://www.worldweatherattribution.org/wp-content/uploads/mozambique-1.jpg"
+        alt="Inundación 2"
+      />
+      <img
+        src="https://dialogue.earth/content/uploads/2024/05/20240523_resident-boat-Porto-Alegre-city-Center-floods-Brazil_Mai-Yandara_MidiaNINJA.jpeg"
+        alt="Inundación 3"
+      />
     </div>
 
     <script>
-        function launchConfetti() {
-            // This triggers the confetti effect
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        }
+      function launchConfetti() {
+        // This triggers the confetti effect
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+      }
     </script>
-
-</body>
+  </body>
 </html>
