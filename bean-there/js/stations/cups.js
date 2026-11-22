@@ -7,13 +7,16 @@ const ART = `<svg viewBox="0 0 120 100"><g fill="#f1efe8"><path d="M30 18h40l-4 
 export default {
   id: 'cups',
   mount(root) {
+    const p = panel(root, 'Cups', 'cups');
     const b = document.createElement('button');
     b.className = 'tile';
-    b.innerHTML = `${ART}Tap: cup under spout`;
+    b.innerHTML = `${ART}<span>Grab Cup</span>`;
     b.onclick = () => {
-      if (cup.at) return emit('toast', 'You already have a cup');
-      cup.at = 'machine'; emit('cup', cup);
+      if (cup.at) return emit('toast', 'You already have a cup on the bar');
+      cup.at = 'counter';
+      emit('cup', cup);
+      emit('toast', 'Cup placed on counter — drag it under the espresso spout!');
     };
-    panel(root, 'Cups').append(b);
+    p.append(b);
   }
 };

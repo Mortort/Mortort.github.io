@@ -1,5 +1,6 @@
 import { on, emit } from './core/events.js';
-import { cup, resetCup } from './core/state.js';
+import { cup, resetCup, held } from './core/state.js';
+import { makeProp, makeDropZone } from './core/ui.js';
 import * as orders from './systems/orders.js';
 import cups from './stations/cups.js';
 import grinder from './stations/grinder.js';
@@ -11,20 +12,19 @@ import pour from './stations/pour.js';
 import water from './stations/water.js';
 import art from './stations/art.js';
 
-// To add a station: create a module with { id, mount(root) } and list it here.
-// Order here is the order on the counter, which follows the workflow.
 const STATIONS = [cups, grinder, tamper, machine, milk, wand, pour, water, art];
 const $ = s => document.querySelector(s);
 
 STATIONS.forEach(s => s.mount($('#stations')));
 orders.init($('#slots'), $('#stats'));
 $('#dump').onclick = resetCup;
-$('#move').onclick = () => {
-  if (!cup.at) return emit('toast', 'No cup to move');
-  cup.at = cup.at === 'machine' ? 'counter' : 'machine'; emit('cup', cup);
-};
 
-// Draws the cup as stacked liquid layers.
+// Counter cup box accepts the cup back from the espresso machine
+makeDropZone($('#cupbox'), ['cup'], () => {
+  cup.at = 'counter';
+  emit('cup', cup);
+});
+
 function cupSVG() {
   const L = [
     ...cup.shots.map(() => ['#3a2014', 16]),
@@ -42,20 +42,41 @@ on('cup', () => {
   const chips = cup.at ? [
     `at ${cup.at}`,
     ...cup.shots.map(q => `shot ${pct(q)}`),
-    ...(cup.milk ? [`milk ${pct(cup.milk.q)}`] : []),
+    ...(cup.milk ? [`${cup.milk.type} milk ${pct(cup.milk.q)}`] : []),
     ...(cup.art ? [`${cup.art.shape} ${pct(cup.art.q)}`] : []),
     ...(cup.extras.includes('water') ? ['hot water'] : [])
   ] : [];
-  $('#cup').innerHTML = cup.at ? cupSVG() : '';
-  $('#chips').innerHTML = chips.length ? chips.map(c => `<span>${c}</span>`).join('') : '<em>No cup yet</em>';
-  $('#move').textContent = cup.at === 'machine' ? 'Move cup to counter' : 'Move cup to machine';
+
+  const cupEl = $('#cup');
+  if (cup.at === 'counter') {
+    cupEl.innerHTML = `<div class="phys-cup">${cupSVG()}<small>Cup (drag to machine or tap customer)</small></div>`;
+    makeProp(cupEl.firstElementChild, 'cup', 'Cup');
+  } else if (cup.at === 'machine') {
+    cupEl.innerHTML = `<div class="cup-away">☕ Cup is under espresso spout<br><small>(Drop here or drag from machine to return)</small></div>`;
+  } else {
+    cupEl.innerHTML = '';
+  }
+
+  $('#chips').innerHTML = chips.length ? chips.map(c => `<span>${c}</span>`).join('') : '<em>Grab a cup to start</em>';
+});
+
+on('held', h => {
+  const banner = $('#heldBanner');
+  if (!banner) return;
+  if (h) {
+    const names = { pf: 'Portafilter', pitcher: 'Milk Pitcher', cup: 'Coffee Cup' };
+    banner.textContent = `Holding: ${names[h]} — tap a glowing station to place it`;
+    banner.hidden = false;
+  } else {
+    banner.hidden = true;
+  }
 });
 
 let t;
 on('toast', msg => {
   const el = $('#toast');
   el.textContent = msg; el.classList.add('show');
-  clearTimeout(t); t = setTimeout(() => el.classList.remove('show'), 2200);
+  clearTimeout(t); t = setTimeout(() => el.classList.remove('show'), 2400);
 });
 
 resetCup();
