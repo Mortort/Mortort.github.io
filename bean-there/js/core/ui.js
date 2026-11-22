@@ -33,3 +33,12 @@ export function gauge(root, label, { zone: [lo, hi], speed, onDone }) {
   ['pointerup', 'pointerleave', 'pointercancel'].forEach(n => btn.addEventListener(n, stop));
   btn.addEventListener('contextmenu', e => e.preventDefault());
 }
+
+// Small status line under a station. fn() returns the text; it refreshes on cup/work events.
+import { on } from './events.js';
+export function badge(p, fn) {
+  const d = document.createElement('div');
+  d.className = 'st'; p.append(d);
+  const f = () => { d.textContent = fn(); };
+  on('work', f); on('cup', f); f();
+}

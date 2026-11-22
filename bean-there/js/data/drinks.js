@@ -23,3 +23,7 @@ export const DRINKS = [
   { id: 'affogato', name: 'Affogato', shots: 1, extras: ['icecream'] },
   { id: 'affcaramel', name: 'Caramel affogato', shots: 1, extras: ['icecream', 'caramel'] }
 ];
+
+// Drinks currently in the game. Add ids here as new stations/ingredients unlock.
+const ACTIVE = ['espresso', 'doppio', 'americano', 'cortado', 'macchiato', 'cappuccino', 'latte', 'flatwhite'];
+export const ACTIVE_DRINKS = DRINKS.filter(d => ACTIVE.includes(d.id));

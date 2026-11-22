@@ -18,25 +18,33 @@ export const SHAPES = {
   tulip: () => [...ring(100, 150, 50, 22), ...ring(100, 100, 40, 20), ...ring(100, 55, 28, 16)]
 };
 
+const TILE = `<svg viewBox="0 0 120 100"><circle cx="60" cy="50" r="38" fill="#7a4a2a"/><path d="M60 72C34 54 40 32 54 36 58 38 60 42 60 42 60 42 62 38 66 36 80 32 86 54 60 72z" fill="#f1efe8"/></svg>`;
+
 export default {
   id: 'art',
   mount(root) {
-    const p = panel(root, 'Latte art');
-    const cv = document.createElement('canvas');
-    cv.width = cv.height = 200;
-    p.append(cv);
-    const c = cv.getContext('2d');
-    let shape = 'heart', pts = [], drawing = false;
+    const tile = document.createElement('button');
+    tile.className = 'tile';
+    tile.innerHTML = `${TILE}Tap: latte art`;
+    panel(root, 'Latte art').append(tile);
 
+    const modal = document.createElement('div');
+    modal.id = 'artModal'; modal.hidden = true;
+    modal.innerHTML = `<div class="artbox"><b>Trace the pattern</b>
+      <div class="row" id="shapes">${Object.keys(SHAPES).map(s => `<button data-s="${s}">${s}</button>`).join('')}</div>
+      <canvas width="200" height="200"></canvas>
+      <div class="row"><button class="quiet" id="aClear">Clear</button><button class="quiet" id="aBack">Back</button><button id="aPour">Pour</button></div></div>`;
+    document.body.append(modal);
+
+    const cv = modal.querySelector('canvas'), c = cv.getContext('2d');
+    let shape = 'heart', pts = [], drawing = false;
     const redraw = () => {
       c.clearRect(0, 0, 200, 200);
       c.fillStyle = 'rgba(241,239,232,.3)';
       SHAPES[shape]().forEach(([x, y]) => { c.beginPath(); c.arc(x, y, 2.5, 0, 7); c.fill(); });
+      modal.querySelectorAll('#shapes button').forEach(b => b.classList.toggle('on', b.dataset.s === shape));
     };
-    const pos = e => {
-      const r = cv.getBoundingClientRect(), k = 200 / r.width;
-      return [(e.clientX - r.left) * k, (e.clientY - r.top) * k];
-    };
+    const pos = e => { const r = cv.getBoundingClientRect(), k = 200 / r.width; return [(e.clientX - r.left) * k, (e.clientY - r.top) * k]; };
     const addPoint = pt => {
       const last = pts[pts.length - 1];
       if (last) {
@@ -60,20 +68,17 @@ export default {
     };
     const clear = () => { pts = []; redraw(); };
 
-    const row = document.createElement('div');
-    row.className = 'row';
-    row.innerHTML = '<button class="quiet">Clear</button><button>Finish pour</button>';
-    const [bClear, bDone] = row.children;
-    bClear.onclick = () => { clear(); cup.art = null; emit('cup', cup); };
-    bDone.onclick = () => {
-      if (cup.milk?.type !== 'steamed') return emit('toast', 'Steam milk before pouring art');
-      if (pts.length < 10) return emit('toast', 'Draw the pattern first');
-      cup.art = score(); emit('cup', cup);
+    tile.onclick = () => {
+      if (cup.milk?.type !== 'steamed') return emit('toast', 'Steam milk first, then pour art');
+      clear(); modal.hidden = false;
     };
-    p.append(row);
-
-    on('order', d => { shape = d?.art || 'heart'; clear(); });
-    on('cup', () => { if (cup.milk === null && cup.art === null) clear(); });
+    modal.querySelector('#shapes').onclick = e => { if (e.target.dataset.s) { shape = e.target.dataset.s; clear(); } };
+    modal.querySelector('#aClear').onclick = clear;
+    modal.querySelector('#aBack').onclick = () => { modal.hidden = true; };
+    modal.querySelector('#aPour').onclick = () => {
+      if (pts.length < 10) return emit('toast', 'Draw the pattern first');
+      cup.art = { shape, q: score() }; modal.hidden = true; emit('cup', cup);
+    };
     redraw();
   }
 };
