@@ -1,6 +1,6 @@
 import { pf, work, machineRun } from '../core/state.js';
 import { emit, on } from '../core/events.js';
-import { panel, gauge, badge, makeProp, makeDropZone } from '../core/ui.js';
+import { panel, badge, makeProp, makeDropZone } from '../core/ui.js';
 
 const GRINDER_ART = `<svg viewBox="0 0 120 90"><path d="M34 4h52l-12 28H46z" fill="#c9d3d6"/><circle cx="52" cy="14" r="4" fill="#4a2c17"/><circle cx="66" cy="12" r="4" fill="#4a2c17"/><rect x="40" y="32" width="40" height="36" rx="6" fill="#3d4a4d"/><rect x="48" y="46" width="24" height="10" rx="3" fill="#d8e0e2"/><rect x="26" y="68" width="68" height="14" rx="4" fill="#2a2118" opacity=".45"/></svg>`;
 
@@ -28,21 +28,44 @@ export default {
   mount(root) {
     const p = panel(root, 'Grinder', 'grinder');
 
-    gauge(p, `${GRINDER_ART}<span>Hold: Grind</span>`, {
-      zone: [0.6, 0.8],
-      speed: 0.5,
-      canStart() {
-        if (pf.at !== 'grinder') { emit('toast', 'Place the portafilter in the grinder cradle first'); return false; }
-        if (pf.stage === 'spent') { emit('toast', 'Knock out the used puck first!'); return false; }
-        return true;
-      },
-      onDone(q) {
-        pf.stage = 'ground';
-        pf.grind = q;
-        pf.tamp = 0;
-        work();
-      }
-    });
+    const grindBtn = document.createElement('button');
+    grindBtn.className = 'action-btn';
+    grindBtn.innerHTML = `${GRINDER_ART}<span>▶ Start Grinding</span>`;
+    p.append(grindBtn);
+    const grindGauge = document.createElement('div');
+    grindGauge.className = 'gauge';
+    grindGauge.innerHTML = '<i style="left:60%;width:20%"></i><b></b>';
+    p.append(grindGauge);
+    const grindBar = grindGauge.querySelector('b');
+    let grindTimer = null, grindProgress = 0;
+    const finishGrinding = () => {
+      if (grindTimer) clearInterval(grindTimer);
+      grindTimer = null;
+      grindProgress = 0;
+      grindBar.style.width = '0%';
+      grindBtn.classList.remove('active-run');
+      grindBtn.innerHTML = `${GRINDER_ART}<span>▶ Start Grinding</span>`;
+      pf.stage = 'ground';
+      pf.grind = 1;
+      pf.tamp = 0;
+      work();
+      emit('toast', 'Grinding complete — grounds are ready to tamp');
+    };
+    grindBtn.onclick = () => {
+      if (grindTimer) return;
+      if (pf.at !== 'grinder') return emit('toast', 'Place the portafilter in the grinder cradle first');
+      if (pf.stage === 'spent') return emit('toast', 'Knock out the used puck first!');
+      if (pf.stage !== 'empty') return emit('toast', 'Empty the portafilter before grinding again');
+      grindProgress = 0;
+      grindBtn.classList.add('active-run');
+      grindBtn.innerHTML = `${GRINDER_ART}<span>Grinding…</span>`;
+      // Stop at the center of the ideal dose window automatically.
+      grindTimer = setInterval(() => {
+        grindProgress = Math.min(0.70, grindProgress + 0.01);
+        grindBar.style.width = `${grindProgress * 100}%`;
+        if (grindProgress >= 0.70) finishGrinding();
+      }, 50);
+    };
 
     const dock = document.createElement('div');
     dock.className = 'dock';

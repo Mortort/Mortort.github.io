@@ -59,24 +59,21 @@ export default {
     };
 
     steamBtn.onclick = () => {
-      if (wandRun.active) {
-        stopSteam();
-        return;
-      }
+      if (wandRun.active) return;
       if (pitcher.at !== 'wand') return emit('toast', 'Place the filled pitcher under the steam wand first');
       if (pitcher.stage === 'empty') return emit('toast', 'Fill the pitcher with cold milk first!');
       if (pitcher.stage === 'steamed') return emit('toast', 'Milk is already steamed!');
 
       wandRun.active = true;
       wandRun.progress = 0;
-      steamBtn.textContent = '⏹ Close Valve';
+      steamBtn.textContent = 'Steaming…';
       steamBtn.classList.add('active-run');
       head.innerHTML = wandArt();
 
       wandRun.timer = setInterval(() => {
-        wandRun.progress = Math.min(1, wandRun.progress + 0.018);
+        wandRun.progress = Math.min(0.71, wandRun.progress + 0.008);
         bar.style.width = (wandRun.progress * 100) + '%';
-        if (wandRun.progress >= 1) {
+        if (wandRun.progress >= 0.71) {
           stopSteam();
         }
       }, 50);

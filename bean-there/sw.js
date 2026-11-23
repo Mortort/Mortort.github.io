@@ -1,4 +1,4 @@
-const V='bean-there-v4';
+const V='bean-there-v5';
 const FILES=['./','index.html','css/style.css','manifest.webmanifest','icons/icon.svg',
 'js/main.js','js/core/events.js','js/core/state.js','js/core/ui.js','js/data/drinks.js','js/systems/orders.js',
 'js/stations/cups.js','js/stations/grinder.js','js/stations/tamper.js','js/stations/machine.js','js/stations/milk.js',

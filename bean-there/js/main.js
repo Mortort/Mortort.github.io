@@ -21,8 +21,10 @@ $('#dump').onclick = resetCup;
 
 // Counter cup box accepts the cup back from the espresso machine
 makeDropZone($('#cupbox'), ['cup'], () => {
+  if (cup.at) return emit('toast', 'You already have a cup on the counter');
   cup.at = 'counter';
   emit('cup', cup);
+  emit('toast', 'Cup ready — drag it to a station');
 });
 
 function cupSVG() {
@@ -49,7 +51,7 @@ on('cup', () => {
 
   const cupEl = $('#cup');
   if (cup.at === 'counter') {
-    cupEl.innerHTML = `<div class="phys-cup">${cupSVG()}<small>Cup (drag to machine or tap customer)</small></div>`;
+    cupEl.innerHTML = `<div class="phys-cup">${cupSVG()}<small>Cup (drag to a station or tap a customer)</small></div>`;
     makeProp(cupEl.firstElementChild, 'cup', 'Cup');
   } else if (cup.at === 'machine') {
     cupEl.innerHTML = `<div class="cup-away">☕ Cup is under espresso spout<br><small>(Drop here or drag from machine to return)</small></div>`;
@@ -57,7 +59,7 @@ on('cup', () => {
     cupEl.innerHTML = '';
   }
 
-  $('#chips').innerHTML = chips.length ? chips.map(c => `<span>${c}</span>`).join('') : '<em>Grab a cup to start</em>';
+  $('#chips').innerHTML = chips.length ? chips.map(c => `<span>${c}</span>`).join('') : '<em>Drag a cup from the stack to start</em>';
 });
 
 on('held', h => {

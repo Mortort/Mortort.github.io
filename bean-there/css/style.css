@@ -83,3 +83,51 @@ button.quiet{background:rgba(0,0,0,.28);font-size:.78rem}
 .artbox canvas{width:100%;display:block;border-radius:50%;touch-action:none;background:#7a4a2a;margin:8px 0}
 .artbox .row{display:flex;gap:6px;margin-top:6px}.artbox .row button{flex:1}
 @media(prefers-reduced-motion:reduce){.enter{animation:none}#toast{transition:none}.action-btn.active-run{animation:none}}
+
+/* Mobile-first horizontal counter: every station stays available and scrolls sideways. */
+#shop{flex:0 0 30%;min-height:150px}
+#counter{
+  flex:1 1 70%;
+  min-height:0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  display:flex;
+  flex-wrap:nowrap;
+  justify-content:flex-start;
+  align-items:stretch;
+  gap:12px;
+  padding:12px 14px 18px;
+  scroll-snap-type:x proximity;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-x pan-y;
+}
+#stations{display:flex;flex:0 0 auto;gap:12px;align-items:stretch;width:max-content}
+#counter>.panel,#stations>.panel{
+  flex:0 0 min(220px,72vw);
+  width:min(220px,72vw);
+  min-width:min(220px,72vw);
+  min-height:100%;
+  padding:10px;
+  scroll-snap-align:start;
+  justify-content:space-around;
+}
+.panel h2{font-size:.88rem;margin-bottom:8px}
+.panel .dock{min-height:64px}
+.panel .hold,.panel .tile{font-size:.88rem}
+.panel .hold svg,.panel .tile svg,.panel .machine-head svg,.panel .wand-head svg{max-height:88px}
+#cupbox{flex:0 0 min(220px,72vw)}
+.cup-pile{min-height:130px;justify-content:center;gap:8px;padding:10px}
+.cup-pile svg{width:100%;max-width:140px;height:95px}
+.action-btn{min-height:48px;font-size:.9rem}
+button{min-height:40px}
+@media(min-width:700px){
+  #shop{flex-basis:32%}
+  #counter{padding-left:20px;padding-right:20px}
+  #counter>.panel,#stations>.panel{flex-basis:230px;width:230px;min-width:230px}
+}
+
+#counter::-webkit-scrollbar{height:7px}
+#counter::-webkit-scrollbar-thumb{background:rgba(241,239,232,.38);border-radius:8px}
+.action-btn{display:flex;align-items:center;justify-content:center;gap:8px}
+.action-btn svg{width:68px;height:54px;flex:0 0 auto}
