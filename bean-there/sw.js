@@ -1,4 +1,4 @@
-const V='bean-there-v5';
+const V='bean-there-v6';
 const FILES=['./','index.html','css/style.css','manifest.webmanifest','icons/icon.svg','js/game.js','js/data/drinks.js'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(V).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
