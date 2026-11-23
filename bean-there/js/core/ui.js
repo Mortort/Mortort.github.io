@@ -72,15 +72,6 @@ export function makeProp(el, itemType, label) {
       if (dragging && ghost) {
         ghost.style.left = ev.clientX + 'px';
         ghost.style.top = ev.clientY + 'px';
-        // Auto-scroll the counter when dragging near an edge so items can
-        // travel between stations that are not simultaneously on screen.
-        const scroller = document.querySelector('#counter');
-        if (scroller) {
-          const bounds = scroller.getBoundingClientRect();
-          const edge = 42;
-          if (ev.clientX > bounds.right - edge) scroller.scrollLeft += 14;
-          else if (ev.clientX < bounds.left + edge) scroller.scrollLeft -= 14;
-        }
         document.querySelectorAll('.drop-zone').forEach(z => {
           const r = z.getBoundingClientRect();
           const over = ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom;

@@ -12,7 +12,7 @@ export default {
 
     gauge(p, `${ART}<span>Hold: Tamp Puck</span>`, {
       zone: [0.5, 0.7],
-      speed: 0.42,
+      speed: 0.6,
       canStart() {
         if (pf.at !== 'tamper') { emit('toast', 'Move the portafilter onto the tamping mat first'); return false; }
         if (pf.stage === 'empty') { emit('toast', 'Grind beans into the portafilter first'); return false; }

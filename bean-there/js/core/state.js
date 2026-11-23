@@ -13,7 +13,7 @@ export const pf = { at: 'grinder', stage: 'empty', double: false, grind: 0, tamp
 // stage: 'empty' | 'filled' | 'steamed'
 export const pitcher = { at: 'milk', stage: 'empty', fillQ: 0, steamQ: 0 };
 
-// Active machine/wand processes (one tap starts an automatic timed cycle).
+// Active machine/wand processes (timer-based, click to start & click to stop!)
 export const machineRun = { active: false, progress: 0, timer: null };
 export const wandRun = { active: false, progress: 0, timer: null };
 

@@ -2,7 +2,7 @@ import { ACTIVE_DRINKS, EXTRAS } from '../data/drinks.js';
 import { cup, resetCup } from '../core/state.js';
 import { emit } from '../core/events.js';
 
-const SLOTS = 3, PATIENCE = 150; // seconds, relaxed on purpose
+const SLOTS = 3, PATIENCE = 90; // seconds, relaxed on purpose
 const SKIN = ['#f2c9a0', '#d9a273', '#a8734a', '#7a4d31'];
 const HAIR = ['#2a2118', '#6b3f1d', '#c8a14a', '#8a8f94', '#a2402a'];
 const SHIRT = ['#e9806a', '#6fb4d6', '#9ccf7b', '#d9a1e0', '#f0c75e'];
@@ -48,7 +48,7 @@ export function init(rootEl, statsElement) {
       if (o && --o.left <= 0) { slots[i] = null; stats.missed++; stats.streak = 0; emit('toast', `${o.drink.name} customer walked out`); }
     });
     const none = slots.every(o => !o);
-    slots.forEach((o, i) => { if (!o && (none || Math.random() < 0.055)) spawn(i); });
+    slots.forEach((o, i) => { if (!o && (none || Math.random() < 0.1)) spawn(i); });
     render();
   }, 1000);
 }

@@ -24,7 +24,7 @@ export default {
 
     gauge(p, `${FRIDGE_ART}<span>Hold: Pour Cold Milk</span>`, {
       zone: [0.5, 0.72],
-      speed: 0.38,
+      speed: 0.5,
       canStart() {
         if (pitcher.at !== 'milk') { emit('toast', 'Place the milk pitcher at the milk fridge first'); return false; }
         if (pitcher.stage !== 'empty') { emit('toast', 'Pitcher already has milk'); return false; }

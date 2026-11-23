@@ -31,7 +31,7 @@ export default {
     head.innerHTML = machineArt();
     p.append(head);
 
-    // One tap starts an automatic extraction cycle.
+    // Click-to-start, click-to-stop brew button!
     const brewBtn = document.createElement('button');
     brewBtn.className = 'action-btn';
     brewBtn.textContent = '▶ Start Brew';
@@ -75,7 +75,10 @@ export default {
     };
 
     brewBtn.onclick = () => {
-      if (machineRun.active) return;
+      if (machineRun.active) {
+        stopBrew();
+        return;
+      }
       if (pf.at !== 'machine') return emit('toast', 'Lock the portafilter into the group head first');
       if (pf.stage === 'empty') return emit('toast', 'The portafilter is empty!');
       if (pf.stage === 'ground') return emit('toast', 'Tamp the grounds before brewing!');
@@ -84,14 +87,14 @@ export default {
 
       machineRun.active = true;
       machineRun.progress = 0;
-      brewBtn.textContent = 'Extracting…';
+      brewBtn.textContent = '⏹ Stop Shot';
       brewBtn.classList.add('active-run');
       head.innerHTML = machineArt();
 
       machineRun.timer = setInterval(() => {
-        machineRun.progress = Math.min(0.66, machineRun.progress + 0.0073);
+        machineRun.progress = Math.min(1, machineRun.progress + 0.016);
         bar.style.width = (machineRun.progress * 100) + '%';
-        if (machineRun.progress >= 0.66) {
+        if (machineRun.progress >= 1) {
           stopBrew();
         }
       }, 50);
